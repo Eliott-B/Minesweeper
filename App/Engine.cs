@@ -11,6 +11,7 @@ namespace Minesweeper.App
         private readonly int[,] iGrid;
 
         private readonly int iMines;
+        private int iFlags = 0;
 
         public Engine(int iInHeight, int iInWidth, int iInMines)
 		{
@@ -47,7 +48,17 @@ namespace Minesweeper.App
 
         public void AddFlag(int iHeight, int iWidth)
         {
+            if (iFlags >= iMines)
+            {
+                throw new EngineException(3);
+            }
+            else if (iHeight >= iGrid.GetLength(0) ||
+                iWidth >= iGrid.GetLength(1))
+            {
+                throw new EngineException(4);
+            }
             iGrid[iHeight, iWidth] = -3;
+            iFlags++;
         }
 	}
 }
