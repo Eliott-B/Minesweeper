@@ -9,7 +9,9 @@ namespace Minesweeper.App
             "You need to add minimum 5 mines.",
             "You need to have minimum 5 columns and lines.",
             "You don't have anymore flags.",
-            "You need to enter a valid Height or Width."
+            "You need to enter a valid Height or Width.",
+            "This case is already discovered or have already a flag.",
+            "This is not flag here."
         };
 	}
 }

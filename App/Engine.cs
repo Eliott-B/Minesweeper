@@ -4,11 +4,13 @@ namespace Minesweeper.App
 	public class Engine
     {
         // 0 No mine
-        // -1 No mine and discovered
-        // -2 Mine
-        // -3 Flag
+        // -1 Not discovered
+        // -2 Flag
         // 1,2,3,... Number of mines around
         private readonly int[,] iGrid;
+        // 0 Nothing
+        // 1 Mine
+        private readonly int[,] iMinesGrid;
 
         private readonly int iMines;
         private int iFlags = 0;
@@ -29,6 +31,7 @@ namespace Minesweeper.App
                 throw new EngineException(2);
             }
             iGrid = new int[iInWidth,iInHeight];
+            iMinesGrid = (int[,])iGrid.Clone();
             iMines = iInMines;
         }
 
@@ -41,7 +44,7 @@ namespace Minesweeper.App
             {
                 int iHeight = rnd.Next(1, iGrid.GetLength(0) - 1);
                 int iWidth = rnd.Next(1, iGrid.GetLength(1) - 1);
-                iGrid[iHeight, iWidth] = -2;
+                iMinesGrid[iHeight, iWidth] = 1;
                 iMinesInGame++;
             }
         }
@@ -57,9 +60,28 @@ namespace Minesweeper.App
             {
                 throw new EngineException(4);
             }
-            iGrid[iHeight, iWidth] = -3;
+            else if (iGrid[iHeight, iWidth] != -1)
+            {
+                throw new EngineException(5);
+            }
+            iGrid[iHeight, iWidth] = -2;
             iFlags++;
         }
-	}
+
+        public void RemoveFlag(int iHeight, int iWidth)
+        {
+            if (iHeight >= iGrid.GetLength(0) ||
+                iWidth >= iGrid.GetLength(1))
+            {
+                throw new EngineException(4);
+            }
+            else if (iGrid[iHeight, iWidth] != -2)
+            {
+                throw new EngineException(6);
+            }
+            iGrid[iHeight, iWidth] = -1;
+            iFlags++;
+        }
+    }
 }
 
