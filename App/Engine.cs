@@ -49,6 +49,27 @@ namespace Minesweeper.App
             }
         }
 
+        public bool IsGameEnd()
+        {
+            for (int i = 0; i < iGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < iGrid.GetLength(1); j++)
+                {
+                    if (iGrid[i, j] == -2 &&
+                        iMinesGrid[i, j] != 1)
+                    {
+                        return false;
+                    }
+                    else if (iGrid[i, j] == -1 &&
+                        iMinesGrid[i, j] == 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public void AddFlag(int iHeight, int iWidth)
         {
             if (iFlags >= iMines)
