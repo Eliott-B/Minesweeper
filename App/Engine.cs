@@ -44,6 +44,11 @@ namespace Minesweeper.App
                 iMinesInGame++;
             }
         }
+
+        public void AddFlag(int iHeight, int iWidth)
+        {
+            iGrid[iHeight, iWidth] = -3;
+        }
 	}
 }
 
