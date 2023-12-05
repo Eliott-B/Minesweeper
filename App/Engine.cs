@@ -40,6 +40,7 @@ namespace Minesweeper.App
             int iMinesInGame = 0;
             Random rnd = new Random();
 
+            // TODO: Fix the start point before generate mines
             while (iMinesInGame < iMines)
             {
                 int iHeight = rnd.Next(1, iGrid.GetLength(0) - 1);
@@ -83,7 +84,7 @@ namespace Minesweeper.App
             {
                 throw new EngineException(4);
             }
-            else if (iGrid[iHeight, iWidth] != -1)
+            else if (iGrid[iHeight, iWidth] <= -1)
             {
                 throw new EngineException(5);
             }
@@ -106,6 +107,27 @@ namespace Minesweeper.App
             }
             iGrid[iHeight, iWidth] = -1;
             iFlags++;
+        }
+
+        public void Discover(int iHeight, int iWidth)
+        {
+            if (iHeight >= iGrid.GetLength(0) ||
+                iWidth >= iGrid.GetLength(1) ||
+                iHeight < 0 ||
+                iWidth < 0)
+            {
+                throw new EngineException(4);
+            }
+            else if (iGrid[iHeight, iWidth] == -1)
+            {
+                throw new EngineException(5);
+            }
+            else if (iGrid[iHeight, iWidth] == -2)
+            {
+                throw new EngineException(7);
+            }
+
+            // TODO: get neighbour and count the number of mines
         }
     }
 }
