@@ -56,7 +56,9 @@ namespace Minesweeper.App
                 throw new EngineException(3);
             }
             else if (iHeight >= iGrid.GetLength(0) ||
-                iWidth >= iGrid.GetLength(1))
+                iWidth >= iGrid.GetLength(1) ||
+                iHeight < 0 ||
+                iWidth < 0)
             {
                 throw new EngineException(4);
             }
@@ -71,7 +73,9 @@ namespace Minesweeper.App
         public void RemoveFlag(int iHeight, int iWidth)
         {
             if (iHeight >= iGrid.GetLength(0) ||
-                iWidth >= iGrid.GetLength(1))
+                iWidth >= iGrid.GetLength(1) ||
+                iHeight < 0 ||
+                iWidth < 0)
             {
                 throw new EngineException(4);
             }
