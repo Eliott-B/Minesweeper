@@ -35,12 +35,21 @@ namespace Minesweeper.App
             iMines = iInMines;
         }
 
-        public void InitGame()
+        public void InitGame(int iStartX, int iStartY)
         {
             int iMinesInGame = 0;
             Random rnd = new Random();
 
-            // TODO: Fix the start point before generate mines
+            if (iStartX < 0 ||
+                iStartX >= iGrid.GetLength(0) ||
+                iStartY < 0 ||
+                iStartY >= iGrid.GetLength(1))
+            {
+                throw new EngineException(8);
+            }
+
+            // TODO: Discover start point
+
             while (iMinesInGame < iMines)
             {
                 int iHeight = rnd.Next(1, iGrid.GetLength(0) - 1);

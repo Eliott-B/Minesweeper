@@ -12,7 +12,8 @@ namespace Minesweeper.App
             "You need to enter a valid Height or Width.",
             "This case is already discovered or have already a flag.",
             "This is not flag here.",
-            "This is a flag here."
+            "This is a flag here.",
+            "Start coords can't be negative or out of range of the grid."
         };
 	}
 }
